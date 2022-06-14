@@ -7,19 +7,24 @@ const userSchema = new mongoose.Schema({
         type:String,
         default:"",
     },
-    email: {
+    email:{
         type: String,
         //A User Cannot Register WithOut Email
         required:true,
         //No Other User Can Have The Same Email
         unique:true,
     },
+    isAdmin:{
+       type:Boolean,
+       required:false,
+       default:false,  
+    },
     password:{
         type:String,
         //A User Cannot Register Without Password
         required:true,  
     },
-    profilePicture: {
+    profilePicture:{
         type: String,
         default:"",
     },
