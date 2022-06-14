@@ -24,11 +24,14 @@ const verifyToken = (req,res,next) =>{
         //call back function   
          jwt.verify(token,SECRET_KEY , (err,data)=>{
                       //if the token format is wrong    
-                      if(err) res.status(401).json({
+                      if(err){ 
+                        res.status(401).json({
                           message:"Invalid Token Used",
                           success: false,
                           input: token
                       });
+                      return;
+                    }
                       //Create req data   
                       req.data = data;
                       //After getting data value
