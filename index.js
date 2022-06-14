@@ -16,7 +16,7 @@ let port = null;
 
 //Function To Intialize Our Variables
 const initVar = async () => {
-    port = process.env.PORT;
+    port = process.env.PORT || 9000;
     RestApiapp = express();
 }
 
