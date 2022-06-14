@@ -1,7 +1,7 @@
 const express = require('express');
 //We have imported the user schema here
 const User = require('../Models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const multer = require('multer');
 const routes = express.Router();
 const connection = require('../Utils/connection');
