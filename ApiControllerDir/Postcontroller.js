@@ -110,6 +110,7 @@ connection().then(async () => {
       try{
       //Getting all files from the request body
       var array = req.files;
+      console.log("Got all files"+array.length);
       let array_url = [];
       //loop through the array to get each filename
       for (var i = 0; i <= array.length; i++) {
@@ -128,7 +129,7 @@ connection().then(async () => {
           category: req.body.categories,
         });
         await post.save();
-
+        console.log("This Post Was Saved And Returned");
         res.json({
           message:"sucessfully uploaded post",
           ...post._doc,

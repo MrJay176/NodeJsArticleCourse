@@ -16,6 +16,7 @@ const verifyToken = (req,res,next) =>{
 
     if(token){
         token = token.replace(/^Bearer\s+/,"");
+        console.log("Token Found");
 
         //we have to verify the token (jsonwebtokens)
         //token
@@ -51,7 +52,7 @@ const verifyToken = (req,res,next) =>{
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
     verifyToken(req, res ,()=>{
-
+          
           if(req.data != undefined){
             var id = req.data.id;
               //we are gonna use the id to find the user in the database
