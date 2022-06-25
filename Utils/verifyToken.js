@@ -46,8 +46,10 @@ const verifyToken = (req,res,next) =>{
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
     verifyToken(req, res , async ()=>{
-          var id = req.data.id;
-          //we are gonna use the id to find the user in the database
+
+          if(req.data != undefined){
+            var id = req.data.id;
+              //we are gonna use the id to find the user in the database
           //We imort the user schema because we are making use of it to find out user in the database
           const userResult = await User.findById(id);
           //Check if the user is admin
@@ -60,6 +62,13 @@ const verifyTokenWithAuthorization = (req , res , next) => {
                  status:"Error",
              })
           }
+          }else{
+            res.json({
+                message:"Invalid User",
+                status:"Error",
+            })
+          }
+        
     });
 } 
 
