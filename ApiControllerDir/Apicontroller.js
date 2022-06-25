@@ -53,7 +53,9 @@ connection().then(async ()=>{
                     };
                     resolve(fileInfo);
                 });
-            });
+            }).catch(function () {
+                console.log("Promise Rejected");
+           });
         }
     });
     uploadImage = multer({ storage });

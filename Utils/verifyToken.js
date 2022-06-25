@@ -15,7 +15,6 @@ const verifyToken = (req,res,next) =>{
     var token =req.headers.authorization;
 
     if(token){
-
         token = token.replace(/^Bearer\s+/,"");
 
         //we have to verify the token (jsonwebtokens)
@@ -24,7 +23,7 @@ const verifyToken = (req,res,next) =>{
         //call back function   
          jwt.verify(token,SECRET_KEY , (err,data)=>{
                       //if the token format is wrong    
-                      if(err){ 
+                      if(err){                
                         res.status(401).json({
                           message:"Invalid Token Used",
                           success: false,
@@ -47,7 +46,7 @@ const verifyToken = (req,res,next) =>{
 
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
-    verifyToken(req,res,async ()=>{
+    verifyToken(req, res , async ()=>{
           var id = req.data.id;
           //we are gonna use the id to find the user in the database
           //We imort the user schema because we are making use of it to find out user in the database

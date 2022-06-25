@@ -107,7 +107,7 @@ connection().then(async () => {
      [ Token.verifyTokenWithAuthorization , uploadImage.array("images", 50)],
     async (req, res) => {
       //Time To Use PostMan
-
+      try{
       //Getting all files from the request body
       var array = req.files;
       let array_url = [];
@@ -120,7 +120,6 @@ connection().then(async () => {
         }
       }
 
-      console.log("files " + JSON.stringify(array));
 
       try {
         const post = await new Post({
@@ -140,6 +139,11 @@ connection().then(async () => {
         res.json({
           message: "error uploading post" + err,
         });
+      }
+      }catch(err){
+        res.status(200).json({
+          message:"Error Uploading Post",
+        })
       }
     }
   );
