@@ -21,7 +21,7 @@ const verifyToken = (req,res,next) =>{
         //token
         //secret_key
         //call back function   
-         jwt.verify(token,SECRET_KEY , (err,data)=>{
+         jwt.verify(token,SECRET_KEY ,async (err,data)=>{
                       //if the token format is wrong    
                       if(err){                
                         res.status(401).json({
@@ -29,9 +29,14 @@ const verifyToken = (req,res,next) =>{
                           success: false,
                           input: token
                       });
+                      return;
                     }
                       //Create req data   
                       req.data = data;
+                      console.log("This is checking id inside data "+data.id)
+                      const userResult = await User.findById(data.id);
+                      req.role = userResult.isAdmin;
+                      console.log("role "+req.role);
                       //After getting data value
                       next();   
          })
@@ -45,15 +50,15 @@ const verifyToken = (req,res,next) =>{
 
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
-    verifyToken(req, res , async ()=>{
+    verifyToken(req, res ,()=>{
 
           if(req.data != undefined){
             var id = req.data.id;
               //we are gonna use the id to find the user in the database
           //We imort the user schema because we are making use of it to find out user in the database
-          const userResult = await User.findById(id);
+          
           //Check if the user is admin
-          var isAdmin = userResult.isAdmin;
+          var isAdmin = req.role;
           if(isAdmin){
            next();
           }else{
