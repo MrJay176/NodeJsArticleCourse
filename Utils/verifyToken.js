@@ -25,11 +25,10 @@ const verifyToken = (req,res,next) =>{
                       //if the token format is wrong    
                       if(err){                
                         res.status(401).json({
-                          message:"Invalid Token Used",
+                          message:"Invalid Token Used , try Again",
                           success: false,
                           input: token
                       });
-                      return;
                     }
                       //Create req data   
                       req.data = data;

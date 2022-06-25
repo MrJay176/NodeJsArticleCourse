@@ -53,11 +53,7 @@ connection().then(async ()=>{
                     };
                     resolve(fileInfo);
                 });
-            }).catch(function () {
-                res.status(401).json({
-                    message:"Cannot upload post",
-                })
-           });
+            });
         }
     });
     uploadImage = multer({ storage });

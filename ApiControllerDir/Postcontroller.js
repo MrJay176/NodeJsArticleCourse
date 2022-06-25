@@ -119,8 +119,6 @@ connection().then(async () => {
           array_url.push({ filename: url });
         }
       }
-
-
       try {
         const post = await new Post({
           title: req.body.title,
