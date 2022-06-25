@@ -54,7 +54,9 @@ connection().then(async ()=>{
                     resolve(fileInfo);
                 });
             }).catch(function () {
-                console.log("Promise Rejected");
+                res.status(401).json({
+                    message:"Cannot upload post",
+                })
            });
         }
     });
