@@ -104,7 +104,7 @@ connection().then(async () => {
   //Upload Post
   routes.post(
     "/uploadPost", 
-     [ Token.verifyTokenWithAuthorization , uploadImage.array("images", 50)],
+     [ Token.verifyTokenWithAuthorization , uploadImage.array("images", 1)],
     async (req, res) => {
       //Time To Use PostMan
       try{
