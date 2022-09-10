@@ -65,7 +65,11 @@ const verifyTokenWithAuthorization = (req , res , next) => {
            next();
           }else{
             console.log("Only ADMIN CAN UPLOAD");
-            return res.send("Only Admin can upload post");
+           res.json({
+                 message:"Only Admin Can Upload Post Here",
+                 status:"Error",
+             });
+             next();
           }
           }else{
             console.log("Request Data is undefined");
