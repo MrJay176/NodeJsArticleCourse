@@ -65,7 +65,7 @@ const verifyTokenWithAuthorization = (req , res , next) => {
            next();
           }else{
             console.log("Only ADMIN CAN UPLOAD");
-            return res.json({
+           res.json({
                  message:"Only Admin Can Upload Post Here",
                  status:"Error",
              });
