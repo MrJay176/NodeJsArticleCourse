@@ -50,7 +50,7 @@ const verifyToken = (req,res,next) =>{
 
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
-    verifyToken(req, res ,()=>{
+    verifyToken(req, resS ,()=>{
           
           if(req.data != undefined){
             console.log("Request Data is not undefined");
