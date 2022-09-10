@@ -30,7 +30,6 @@ const verifyToken = (req,res,next) =>{
                           success: false,
                           input: token
                       });
-                
                     }
                       //Create req data   
                       req.data = data;
@@ -61,6 +60,7 @@ const verifyTokenWithAuthorization = (req , res , next) => {
           //Check if the user is admin
           var isAdmin = req.role;
           if(isAdmin){
+            console.log("This is Admin "+isAdmin);
            next();
           }else{
             return res.json({
