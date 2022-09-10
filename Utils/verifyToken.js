@@ -53,6 +53,7 @@ const verifyTokenWithAuthorization = (req , res , next) => {
     verifyToken(req, res ,()=>{
           
           if(req.data != undefined){
+            console.log("Request Data is not undefined");
             var id = req.data.id;
               //we are gonna use the id to find the user in the database
           //We imort the user schema because we are making use of it to find out user in the database
@@ -63,12 +64,14 @@ const verifyTokenWithAuthorization = (req , res , next) => {
             console.log("This is Admin "+isAdmin);
            next();
           }else{
+            console.log("Only ADMIN CAN UPLOAD");
             return res.json({
                  message:"Only Admin Can Upload Post Here",
                  status:"Error",
              });
           }
           }else{
+            console.log("Request Data is undefined");
            return res.json({
                 message:"Invalid User",
                 status:"Error",
