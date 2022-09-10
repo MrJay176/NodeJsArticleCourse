@@ -1,4 +1,4 @@
-//This class will help to check certain permissions of the user 
+ //This class will help to check certain permissions of the user 
 const jwt    = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const Role = require("../Utils/role");
@@ -46,6 +46,7 @@ const verifyToken = (req,res,next) =>{
           message:"You are not authenticated , Please register or login ",
           status:"error", 
       });
+      return;
     }
 }
 
@@ -66,13 +67,15 @@ const verifyTokenWithAuthorization = (req , res , next) => {
              res.json({
                  message:"Only Admin Can Upload Post Here",
                  status:"Error",
-             })
+             });
+             return;
           }
           }else{
             res.json({
                 message:"Invalid User",
                 status:"Error",
-            })
+            });
+            return;
           }
         
     });
