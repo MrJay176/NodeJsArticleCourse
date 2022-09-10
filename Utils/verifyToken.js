@@ -32,8 +32,8 @@ const verifyToken = (req,res,next) =>{
                       });
                     }
                       //Create req data   
-                      req.data = data;
-                      console.log("This is checking id inside data "+data.id)
+                     // req.data = data;
+                      //console.log("This is checking id inside data "+data.id)
                       const userResult = await User.findById(data.id);
                       req.role = userResult.isAdmin;
                       console.log("role "+req.role);
@@ -50,11 +50,11 @@ const verifyToken = (req,res,next) =>{
 
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
-    verifyToken(req, resS ,()=>{
+    verifyToken(req, res ,()=>{
           
-          if(req.data != undefined){
+          if(req.role != undefined){
             console.log("Request Data is not undefined");
-            var id = req.data.id;
+            //var id = req.data.id;
               //we are gonna use the id to find the user in the database
           //We imort the user schema because we are making use of it to find out user in the database
           
