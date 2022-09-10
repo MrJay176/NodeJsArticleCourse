@@ -111,7 +111,8 @@ connection().then(async () => {
         res.json({
           message:"Only Admin Can do this",
           status:"Error",
-        })
+        });
+        return;
       }
       try{
       //Getting all files from the request body
