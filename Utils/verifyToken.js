@@ -51,7 +51,7 @@ const verifyToken = (req,res,next) =>{
 //Use the token for authorization roles check if user is admin or not
 const verifyTokenWithAuthorization = (req , res , next) => {
     verifyToken(req, res ,()=>{
-          
+        
           if(req.role != undefined){
             console.log("Request Data is not undefined");
             //var id = req.data.id;
@@ -62,17 +62,11 @@ const verifyTokenWithAuthorization = (req , res , next) => {
           var isAdmin = req.role;
           if(isAdmin){
             console.log("This is Admin "+isAdmin);
-           next();
+            next();
           }else{
-            console.log("Only ADMIN CAN UPLOAD");
-            try{
-           res.json({
-                 message:"Only Admin Can Upload Post Here",
-                 status:"Error",
-             });
-            }catch(err){
-              console.log("Got Error out "+err);
-            }
+              console.log("Only ADMIN CAN UPLOAD");
+              req.onlyAdmin = true;
+              next();
             // next();
           }
           }else{

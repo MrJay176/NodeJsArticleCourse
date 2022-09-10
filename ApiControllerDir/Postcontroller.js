@@ -107,6 +107,12 @@ connection().then(async () => {
      [ Token.verifyTokenWithAuthorization , uploadImage.array("images", 1)],
     async (req, res) => {
       //Time To Use PostMan
+      if(req.onlyAdmin){
+        res.json({
+          message:"Only Admin Can do this",
+          status:"Error",
+        })
+      }
       try{
       //Getting all files from the request body
       var array = req.files;
