@@ -16,7 +16,7 @@ const verifyToken = (req,res,next) =>{
 
     if(token){
         token = token.replace(/^Bearer\s+/,"");
-        console.log("Token Found");
+        console.log("Token Found "+token);
 
         //we have to verify the token (jsonwebtokens)
         //token
@@ -25,12 +25,12 @@ const verifyToken = (req,res,next) =>{
          jwt.verify(token,SECRET_KEY ,async (err,data)=>{
                       //if the token format is wrong    
                       if(err){                
-                        res.status(401).json({
+                       return res.status(401).json({
                           message:"Invalid Token Used , try Again",
                           success: false,
                           input: token
                       });
-                      return;
+                
                     }
                       //Create req data   
                       req.data = data;
@@ -46,7 +46,6 @@ const verifyToken = (req,res,next) =>{
           message:"You are not authenticated , Please register or login ",
           status:"error", 
       });
-      return;
     }
 }
 
@@ -64,18 +63,17 @@ const verifyTokenWithAuthorization = (req , res , next) => {
           if(isAdmin){
            next();
           }else{
-             res.json({
+            return res.json({
                  message:"Only Admin Can Upload Post Here",
                  status:"Error",
              });
-             return;
           }
           }else{
-            res.json({
+           return res.json({
                 message:"Invalid User",
                 status:"Error",
             });
-            return;
+            
           }
         
     });
