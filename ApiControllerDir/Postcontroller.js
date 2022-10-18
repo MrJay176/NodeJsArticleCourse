@@ -60,7 +60,7 @@ connection().then(async () => {
   //We are set to upload our images
 
   //find a single post by Id
-  routes.get("/find/:id" , async (req,res)=>{
+  routes.get(":/find/id" , async (req,res)=>{
       let id = req.params.id;
       let post = await Post.findById(id);
       res.status(200).json({...post._doc})
